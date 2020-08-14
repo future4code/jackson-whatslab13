@@ -1,11 +1,125 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import styled from "styled-components" 
+
+const Tamanho = styled.input` 
+   width:${props => { 
+     if(props.tamanho === "grande") {
+      return "60vw" 
+      } else if(props.tamanho === "pequeno"){
+      return "20vw" } }} ;
+      height: 10vh;
+      font-size: 30px;
+  
+  `
+
+
+
+
+  
+const CorDeFundo = styled.p`
+      background-color: gray;
+      position: absolute;
+      bottom: 0;
+         
+
+
+
+
+         
+
+`
+
 
 class App extends React.Component {
+
+
+
   state = {
-    listaMensagem : [
+    
+    pessoas: [
       
+    ],
+    
+    valorInputPessoa: "",
+    valorInputEmail: ""
+  };
+
+  adicionaPessoa = () => {
+    
+    const novaPessoa = {
+      
+      nome: this.state.valorInputPessoa,
+      
+      email: this.state.valorInputEmail
+    };
+
+    
+    const novoPessoas = [...this.state.pessoas, novaPessoa];
+
+    
+    this.setState({ pessoas: novoPessoas });
+  };
+
+  onChangeInputPessoa = (event) => {
+    
+    this.setState({ valorInputPessoa: event.target.value });
+  };
+
+  onChangeInputEmail = (event) => {
+    
+    this.setState({ valorInputEmail: event.target.value });
+  };
+
+  render() {
+   
+    const listaDeComponentes = this.state.pessoas.map((pessoa) => {
+      return (
+        <p>
+          <strong>{pessoa.nome}</strong> : {pessoa.email}
+        </p>
+      );
+    });
+
+    return (
+       
+       <CorDeFundo backgroud-color = {"blue"}>
+        <div>
+          <div>{listaDeComponentes}</div>
+          
+          <Tamanho tamanho = {"pequeno"} 
+           
+            value={this.state.valorInputPessoa}
+            
+            onChange={this.onChangeInputPessoa}
+            placeholder={"usuario"}
+          />
+         
+          
+          <Tamanho  tamanho = {"grande"} 
+           
+            value={this.state.valorInputEmail}
+           
+            onChange={this.onChangeInputEmail}
+            placeholder={"mensagem"}
+          />
+          
+          <button onClick={this.adicionaPessoa}>Adicionar</button>
+       </div>
+      </CorDeFundo>
+    );
+  }
+}
+  /*
+  state = {
+    listaMensagem : [{
+      
+      usuario: "",
+      mensagem: ""
+
+    }
+
     ],
     inputUsuario: "",
     inputMensagem: "",
@@ -13,24 +127,20 @@ class App extends React.Component {
 
   adicionarUsuario = () => {
 
-
-    //novabranch
-
     const novoUsuario  = {
-      novoUsuario: this.state.inputUsuario,
-      novaMensagem: this.state.inputMensagem
+      usuario: this.state.inputUsuario,
+      mensagem: this.state.inputMensagem
     }
 
-    const novaListaMensagens = [...this.state.listaMensagem,
-       novoUsuario];
+    const novaLista = [...this.state.listaMensagem, novoUsuario];
   
-    this.setState({novaListaMensagem: novaListaMensagens, 
+    this.setState({ListaMensagem: novaLista, 
       inputUsuario: "", 
       inputMensagem: ""})
 
   }
 
-  onChangTextoUsuario = (event) => {
+  onChangeTextoUsuario = (event) => {
     this.setState({inputUsuario : event.target.value})
   
   }
@@ -45,9 +155,9 @@ class App extends React.Component {
     
     const impressao = this.state.listaMensagem.map((post) => {
       return(
-        <p>
-          {post.novoUsuario} : {post.novaMensagem}
-        </p>
+        <div>
+          {post.usuario}  {post.mensagem}
+        </div>
         
       )
     })
@@ -58,12 +168,12 @@ class App extends React.Component {
        <div>{impressao}</div>
        <div>
         <input 
-        type ="text"  placeholder='usuario'
-        onChange={this.onChangTextoUsuario}
+        placeholder='usuario'
+        onChange={this.onChangeTextoUsuario}
         value = {this.state.inputUsuario}
         />
         <input 
-        type ="text"  placeholder='mensagem'
+         placeholder='mensagem'
         onChange={this.onChangeTextoMensagem}
         value = {this.state.inputMensagem}
         />
@@ -79,6 +189,6 @@ class App extends React.Component {
       </div> 
     )
   }
-}
+}*/
 
 export default App;
