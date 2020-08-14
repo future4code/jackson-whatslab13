@@ -2,79 +2,80 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-export class App extends React.Component{
+class App extends React.Component {
   state = {
     listaMensagem : [
-      {
-        usuario: "",
-        mensagem: "", 
-      }
+      
     ],
-    
+    inputUsuario: "",
+    inputMensagem: "",
+  }
+
+  adicionarUsuario = () => {
+
+    const novoUsuario  = {
+      novoUsuario: this.state.inputUsuario,
+      novaMensagem: this.state.inputMensagem
+    }
+
+    const novaListaMensagens = [...this.state.listaMensagem,
+       novoUsuario];
+  
+    this.setState({novaListaMensagem: novaListaMensagens, 
+      inputUsuario: "", 
+      inputMensagem: ""})
+
   }
 
   onChangTextoUsuario = (event) => {
-    this.setState({usuario : event.target.value})
+    this.setState({inputUsuario : event.target.value})
   
   }
 
   onChangeTextoMensagem =(event)=> {
-    this.setState({mensagem: event.target.value})
+    this.setState({inputMensagem: event.target.value})
   
-  }
-  adicionarUsuario = () => {
-
-    const novoUsuario  = {
-      usuario: this.state.usuario,
-      mensagem: this.state.mensagem
-    }
-
-    const novaListaMensagem = [adicionarUsuario, ...this.state.listaMensagem]
-  
-    this.setState({listaMensagem: novaListaMensagem, novaListaMensagem: ''})
-
   }
 
   
   render() {
+    
+    const impressao = this.state.listaMensagem.map((post) => {
+      return(
+        <p>
+          {post.novoUsuario} : {post.novaMensagem}
+        </p>
+        
+      )
+    })
+
+
     return(
-      <div className = "App">
+      <div>
+       <div>{impressao}</div>
+       <div>
         <input 
         type ="text"  placeholder='usuario'
         onChange={this.onChangTextoUsuario}
-        value = {this.state.usuario}
+        value = {this.state.inputUsuario}
         />
         <input 
         type ="text"  placeholder='mensagem'
         onChange={this.onChangeTextoMensagem}
-        value = {this.state.mensagem}
+        value = {this.state.inputMensagem}
         />
         <button
         onClick ={this.adicionarUsuario}>
           Enviar
         </button>
 
-      </div>
+       </div>
 
-      {this.state,listaMensagem.map((mensagem)=>{
-        return (
-          <mensagem
-          usuario = {this.adicionarUsuario}
-          
-          />
-        )
-      })
+        
+
+      </div> 
     )
-
-
-
   }
-
-
-  return (
-    <div
-    
-  );
 }
 
-
+export default App;
