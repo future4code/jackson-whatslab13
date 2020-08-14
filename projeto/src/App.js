@@ -13,6 +13,9 @@ class App extends React.Component {
 
   adicionarUsuario = () => {
 
+
+    //novabranch
+
     const novoUsuario  = {
       novoUsuario: this.state.inputUsuario,
       novaMensagem: this.state.inputMensagem
