@@ -14,8 +14,8 @@ class App extends React.Component {
   adicionarUsuario = () => {
 
     const novoUsuario  = {
-      novoUsuario: this.state.inputUsuario,
-      novaMensagem: this.state.inputMensagem
+      usuario: this.state.inputUsuario,
+      mensagem: this.state.inputMensagem
     }
 
     const novaListaMensagens = [...this.state.listaMensagem,
@@ -43,7 +43,7 @@ class App extends React.Component {
     const impressao = this.state.listaMensagem.map((post) => {
       return(
         <p>
-          {post.novoUsuario} : {post.novaMensagem}
+          {post.usuario} : {post.mensagem}
         </p>
         
       )
