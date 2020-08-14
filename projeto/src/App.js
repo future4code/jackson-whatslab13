@@ -22,7 +22,12 @@ const CorDeFundo = styled.p`
       background-color: gray;
       position: absolute;
       bottom: 0;
-      
+         
+
+
+
+
+         
 
 `
 
