@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import Foto from "./img/imagem.png";
-const Paragraph = styled.span `
+const Paragraph = styled.span`
  position: fixed;
   bottom: 0;
   margin-bottom: 100px;
@@ -31,16 +31,15 @@ const CorDeFundo = styled.body`
 display:flex;
 justify-content:space-evenly;
 margin-bottom:10px;
-     width: 100vw;
-     min-height:max-content;
-     box-sizing:border-box;      
-      position: fixed;
-      bottom: 0;
-      font-size: 30px;
-    
+width: 100vw;
+min-height:max-content;
+box-sizing:border-box;      
+position: fixed;
+bottom: 0;
+font-size: 30px;
 `
 const PlanoDeFundo = styled.div`
-        background-color: green;
+        background-color: black;
         height: 100vh;
         width: 100vw;
 `
@@ -52,10 +51,10 @@ const Botao = styled.button`
     border-radius: 15px;
     font-size: 30px;
     border: 3px solid gray;
-     border-radius: 15px;
+    
     
 `
-const Button = styled.button `
+const Button = styled.button`
 height:5vh;
 width:10vw;
 border-radius:5px;
@@ -79,11 +78,11 @@ const TagP = styled.p`
   color: blue;
   background-color: #ffff;
 `
-const Imagem = styled.img `
+const Imagem = styled.img`
 width:60px;
 cursor:pointer;
 `
-const Strong = styled.strong `
+const Strong = styled.strong`
 color:blue;
 margin-left:10px;
 font-size:20px;
@@ -108,9 +107,10 @@ class App extends React.Component {
     }
     );
 
-    this.setState({ pessoas: novaListaDeMensagens,
+    this.setState({
+      pessoas: novaListaDeMensagens,
       valorImputPessoa: ""
-     });
+    });
   };
 
   adicionaPessoa = () => {
@@ -119,9 +119,11 @@ class App extends React.Component {
       email: this.state.valorInputEmail
     };
     const novoPessoas = [...this.state.pessoas, novaPessoa];
-    this.setState({ pessoas: novoPessoas,
-      valorInputPessoa: "" ,
-      valorInputEmail: ""});
+    this.setState({
+      pessoas: novoPessoas,
+      valorInputPessoa: "",
+      valorInputEmail: ""
+    });
   };
 
   onChangeInputPessoa = (event) => {
@@ -142,11 +144,11 @@ class App extends React.Component {
       );
     });
     return (
-     
-      <PlanoDeFundo>  
+
+      <PlanoDeFundo>
         <Paragraph>{listaDeComponentes}</Paragraph>
         <CorDeFundo >
-          <TamanhoInput 
+          <TamanhoInput
             value={this.state.valorInputPessoa}
             onChange={this.onChangeInputPessoa}
             placeholder={"usuario"}
@@ -157,8 +159,8 @@ class App extends React.Component {
             placeholder={"mensagem"}
           />
           <Botao >
-            <Imagem src={Foto} onClick={this.adicionaPessoa}/>
-            </Botao>
+            <Imagem src={Foto} onClick={this.adicionaPessoa} />
+          </Botao>
         </CorDeFundo>
         {/* <Post
           key={post.id}
